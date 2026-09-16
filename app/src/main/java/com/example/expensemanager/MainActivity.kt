@@ -1,3 +1,4 @@
+@file:OptIn(androidx.compose.material3.ExperimentalMaterial3Api::class)
 package com.example.expensemanager
 
 import android.os.Bundle
@@ -273,5 +274,12 @@ fun AuthScreen(onSuccess: () -> Unit) {
             if (email.isNotBlank()) FirebaseAuth.getInstance().sendPasswordResetEmail(email)
         }) { Text("Forgot password?") }
         if (error.isNotBlank()) Text(error, color = MaterialTheme.colorScheme.error)
+    }
+}
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent { AppTheme { ExpenseManagerApp() } }
     }
 }
